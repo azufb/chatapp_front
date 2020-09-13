@@ -35,10 +35,10 @@ class Auth extends Component {
         }
 
         // signIn用のAPIキー
-        let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBFDjup1czgFjfXsmCdwbjeuc_vk3-RquE';
+        let url = '';
         // signUp用のAPIキー
         if (this.state.isSignUp) {
-            url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBFDjup1czgFjfXsmCdwbjeuc_vk3-RquE';
+            url = '';
         }
         
         axios.post(url, authDate)
