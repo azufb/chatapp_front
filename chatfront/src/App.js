@@ -9,6 +9,9 @@ import './App.css';
 
 import Login from './Login';
 import Logout from './Logout';
+import Auth from './Auth';
+import Home from './Home';
+// import User from './User';
 
 class App extends Component {
   render() {
@@ -17,7 +20,12 @@ class App extends Component {
         <Switch>
           <Route exact path='/login' component={ Login } />
           <Route exact path='/logout' component={ Logout } />
-
+          <Auth>
+            <Switch>
+              <Route exact path='/home' component={ Home } />
+              <Redirect exact path='/' to='/home' />
+            </Switch>
+          </Auth>
         </Switch>
       </Router>
     )
