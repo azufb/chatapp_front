@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+/*import React, { useContext } from "react";
 import { withRouter } from "react-router";
 import { AuthContext } from "./auth";
 
@@ -29,4 +29,4 @@ const SignUp = ({ history }) => {
   );
 };
 
-export default withRouter(SignUp);
+export default withRouter(SignUp);*/

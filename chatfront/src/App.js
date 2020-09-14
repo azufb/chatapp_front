@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import PrivateRoute from './PrivateRoute';
-import { AuthProvider } from './auth';
-import Login from './Login';
-import SignUp from './SignUp';
-import Home from './components/Home';
+//import { BrowserRouter as Router, Route } from 'react-router-dom';
+//import PrivateRoute from './PrivateRoute';
+//import { AuthProvider } from './auth';
+//import Login from './Login';
+//import SignUp from './SignUp';
+//mport Home from './components/Home';
 
-const App = () => {
+/*const App = () => {
   return (
     <AuthProvider>
       <Router>
@@ -21,4 +21,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default App;*/

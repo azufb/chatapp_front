@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+/*import React, { useEffect, useState } from 'react';
 import { app } from './base.js';
 
 // contextの作成
@@ -60,5 +60,5 @@ export const AuthProvider = ({ children }) => {
         >
             { children }
         </AuthContext.Provider>
-    );*/
-};
+    );
+};*/

@@ -1,4 +1,3 @@
-//.env
 REACT_APP_FIREBASE_KEY="AIzaSyBFDjup1czgFjfXsmCdwbjeuc_vk3-RquE"
 REACT_APP_FIREBASE_DOMAIN="chatapp-e188e.firebaseapp.com"
 REACT_APP_FIREBASE_DATABASE="https://chatapp-e188e.firebaseio.com"

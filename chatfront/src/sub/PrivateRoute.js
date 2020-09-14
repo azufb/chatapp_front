@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+/*import React, { useContext } from 'react';
 import { Route } from 'react-router-dom';
 import { AuthContext } from './auth';
 import Login from './Login';
@@ -11,4 +11,4 @@ const PrivateRoute = ({ component: RouteComponent, ...options }) => {
     );
 };
 
-export default PrivateRoute;
+export default PrivateRoute;*/
