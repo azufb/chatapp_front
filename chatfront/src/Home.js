@@ -10,11 +10,3 @@ export default function Home() {
     </div>
   );
 }
-
-/*function Home() {
-  return <div>
-    <Container className="center">Welcome!!</Container>
-  </div>
-}
-
-export default Home();*/
