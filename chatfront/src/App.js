@@ -1,12 +1,31 @@
 import React from 'react';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 
-function App() {
+import Auth from './Auth';
+
+import Login from './Login';
+import Logout from './Logout';
+import Home from './Home';
+
+export default function App() {
   return (
-    <div className="App">
-      <h1>Hello World!!</h1>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/login" component={ Login } />
+        <Route exact path="/logout" component={ Logout } />
+
+        <Auth>
+          <Switch>
+            <Route exact path="/home" component={ Home }  />
+            <Redirect from="/" to="/home" />
+          </Switch>
+        </Auth>
+      </Switch>
+    </Router>
   );
 }
-
-export default App;
