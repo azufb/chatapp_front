@@ -10,7 +10,7 @@ import Auth from './Auth';
 
 import Login from './Login';
 import Logout from './Logout';
-import List1 from './List1';
+import Home from './Home';
 
 export default class App extends Component {
   render() {
@@ -22,8 +22,8 @@ export default class App extends Component {
 
           <Auth>
             <Switch>
-              <Route exact path="/list1" component={ List1 } />
-              <Redirect from="/" to="/list1" />
+              <Route exact path="/home" component={ Home }  />
+              <Redirect from="/" to="/home" />
             </Switch>
           </Auth>
         </Switch>
