@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Alert } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import SignUp from "./SignUp";
 import User from "./User";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -54,6 +60,14 @@ const Login = () => {
             ログイン
           </Button>
         </Form>
+        <Router>
+          <Switch>
+            <button>
+              初めての方はこちら!!
+              <Route exact path="signup" component={SignUp} />
+            </button>
+          </Switch>
+        </Router>
       </Row>
     </Container>
   );
