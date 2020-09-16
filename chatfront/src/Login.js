@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Alert } from "react-bootstrap";
-import Switch from "react-bootstrap/esm/Switch";
-import { Link, Router, useHistory } from "react-router-dom";
+import { Link,　useHistory } from "react-router-dom";
 //import SignUp from "./SignUp";
 import User from "./User";
 /*import {
