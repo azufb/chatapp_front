@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Alert } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
-import SignUp from "./SignUp";
+import Switch from "react-bootstrap/esm/Switch";
+import { Link, Router, useHistory } from "react-router-dom";
+//import SignUp from "./SignUp";
 import User from "./User";
-import {
+/*import {
   BrowserRouter as Router,
-  Route,
+  //Route,
   Switch
-} from "react-router-dom";
+} from "react-router-dom";*/
 
 const Login = () => {
+  //const [username] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
@@ -25,6 +27,15 @@ const Login = () => {
       setErrMessage("メールアドレスかパスワードが違います");
     }
   };
+
+  /*const clickGoToSignUpBtn = async () => {
+    try {
+      await User.signUp(username, email, password);
+      history.push("/signup");
+    } catch (e) {
+      setErrMessage('不正な画面遷移');
+    }
+  }*/
 
   return (
     <Container className="center">
@@ -60,14 +71,11 @@ const Login = () => {
             ログイン
           </Button>
         </Form>
-        <Router>
+        {/*<Router>
           <Switch>
-            <button>
-              初めての方はこちら!!
-              <Route exact path="signup" component={SignUp} />
-            </button>
+            <Link to="/signup">初めての方はこちら</Link>
           </Switch>
-        </Router>
+        </Router>*/}
       </Row>
     </Container>
   );
