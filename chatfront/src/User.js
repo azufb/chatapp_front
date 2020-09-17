@@ -22,6 +22,11 @@ class User {
   
       return true;
     };
+
+    signUp = async (username, email, password) => {
+      this.set('isLoggedIn', true);
+      return true;
+    }
   
     logout = async () => {
       if (this.isLoggedIn()) {
