@@ -1,3 +1,4 @@
+import axios from "axios";
 class User {
     isLoggedIn = () => this.get('isLoggedIn') === 'true';
   
@@ -25,6 +26,13 @@ class User {
 
     signUp = async (username, email, password) => {
       this.set('isLoggedIn', true);
+      const communication = await axios.post('http://localhost:8000/api/auth/user/',{
+        email,
+        password
+      }).then((response)=>{
+        console.log(response);
+      })
+      console.log(communication);
       return true;
     }
   
@@ -33,7 +41,7 @@ class User {
         this.set('isLoggedIn', false);
   
         // ログアウト処理
-        //　他に必要な処理があるのならこちら
+        // 他に必要な処理があるのならこちら
       }
     };
   }

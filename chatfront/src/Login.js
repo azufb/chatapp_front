@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Alert } from "react-bootstrap";
-import { Link,　useHistory } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 //import SignUp from "./SignUp";
 import User from "./User";
+import axios from "axios";
+
 /*import {
   BrowserRouter as Router,
   //Route,
