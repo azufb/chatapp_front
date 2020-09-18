@@ -15,11 +15,15 @@ class User {
     };
   
     login = async (email, password) => {
-      // ログイン処理
-      // ログインエラー時には、falseを返してもいいし、returnを別の用途で利用したかったら
-      // 例外を出しして呼び出し元でcatchしてもいいかと思います。
-  
       this.set('isLoggedIn', true);
+      const login = await axios.post('http://localhost:8000/api/user/', {
+        email,
+        password
+      }).then((response) => {
+        console.log(response);
+      })
+
+      console.log(login);
   
       return true;
     };
