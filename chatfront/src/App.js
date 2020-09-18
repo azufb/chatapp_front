@@ -11,6 +11,7 @@ import Auth from "./Auth";
 import Login from "./Login";
 import Logout from "./Logout";
 import Home from "./Home";
+import SignUp from "./SignUp";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
       <Switch>
         <Route exact path="/login" component={Login} />
         <Route exact path="/logout" component={Logout} />
+        <Route exact path="/signup" component={SignUp} />
 
         <Auth>
           <Switch>
