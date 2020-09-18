@@ -56,6 +56,7 @@ const Login = () => {
             ログイン
           </Button>
         </Form>
+        <button><a href="./SignUp">初めての方はこちら!</a></button>
       </Row>
     </Container>
   );
