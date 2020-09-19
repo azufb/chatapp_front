@@ -44,9 +44,6 @@ class User {
     logout = async () => {
       if (this.isLoggedIn()) {
         this.set('isLoggedIn', false);
-  
-        // ログアウト処理
-        // 他に必要な処理があるのならこちら
       }
     };
 }
