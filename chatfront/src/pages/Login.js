@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Alert } from "react-bootstrap";
 import { Link,useHistory } from "react-router-dom";
-//import SignUp from "./SignUp";
 import User from "../User";
-import axios from "axios";
 
 
 const Login = () => {
@@ -17,7 +15,7 @@ const Login = () => {
     try {
       await User.login(email, password);
 
-      history.push("/list1");
+      history.push("/home");
     } catch (e) {
       setErrMessage("メールアドレスかパスワードが違います");
     }
@@ -57,7 +55,9 @@ const Login = () => {
             ログイン
           </Button>
         </Form>
-        <button><a href="./SignUp">初めての方はこちら!</a></button>
+        <button>
+          <Link to='/signup'>初めての方はこちら!</Link>
+        </button>
       </Row>
     </Container>
   );

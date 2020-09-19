@@ -16,7 +16,7 @@ class User {
   
     login = async (email, password) => {
       this.set('isLoggedIn', true);
-      const login = await axios.post('http://localhost:8000/api/user/', {
+      const login = await axios.post('http://localhost:8000/api/auth/user/', {
         email,
         password
       }).then((response) => {
@@ -44,9 +44,6 @@ class User {
     logout = async () => {
       if (this.isLoggedIn()) {
         this.set('isLoggedIn', false);
-  
-        // ログアウト処理
-        // 他に必要な処理があるのならこちら
       }
     };
 }
