@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import User from './User';
+import User from '../User';
 
 export default function Logout() {
   useEffect(() => {
