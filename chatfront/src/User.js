@@ -16,16 +16,13 @@ class User {
   
     login = async (email, password) => {
       this.set('isLoggedIn', true);
-      const login = await axios.post('http://localhost:8000/api/auth/user/', {
+      await axios.post('http://localhost:8000/api/auth/user/', {
         email,
         password
       }).then((response) => {
-        console.log(response);
+        this.token = response.data.token
+        console.log(this.token);
       })
-
-      console.log(login);
-  
-      return true;
     };
 
     signUp = async (username, email, password) => {
@@ -35,6 +32,7 @@ class User {
           password
       }).then((response)=>{
           this.token = response.data.token
+          console.log(this.token);
       })
     }
 
