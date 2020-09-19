@@ -30,15 +30,16 @@ class User {
 
     signUp = async (username, email, password) => {
       this.set('isLoggedIn', true);
-      const communication = await axios.post('http://localhost:8000/api/auth/user/',{
-        email,
-        password
+      await axios.post('http://localhost:8000/api/register/user/', {
+          email,
+          password
       }).then((response)=>{
-        console.log(response);
+          this.token = response.data.token
       })
-      console.log(communication);
-      return true;
     }
+
+    /** token保持 */
+    token = ''
   
     logout = async () => {
       if (this.isLoggedIn()) {
@@ -48,6 +49,6 @@ class User {
         // 他に必要な処理があるのならこちら
       }
     };
-  }
+}
   
   export default new User();
