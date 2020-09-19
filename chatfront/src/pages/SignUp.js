@@ -21,7 +21,7 @@ const SignUp = () => {
     }
     try {
       await User.signUp(username, email, password);
-      history.push("/list1");
+      history.push("/home");
     } catch (e) {
       console.log(e);
     }
