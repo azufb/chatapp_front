@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Alert } from "react-bootstrap";
-import { Link,　useHistory } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 //import SignUp from "./SignUp";
-import User from "./User";
-/*import {
-  BrowserRouter as Router,
-  //Route,
-  Switch
-} from "react-router-dom";*/
+import User from "../User";
+import axios from "axios";
+
 
 const Login = () => {
-  //const [username] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
@@ -26,15 +22,6 @@ const Login = () => {
       setErrMessage("メールアドレスかパスワードが違います");
     }
   };
-
-  /*const clickGoToSignUpBtn = async () => {
-    try {
-      await User.signUp(username, email, password);
-      history.push("/signup");
-    } catch (e) {
-      setErrMessage('不正な画面遷移');
-    }
-  }*/
 
   return (
     <Container className="center">
@@ -70,11 +57,7 @@ const Login = () => {
             ログイン
           </Button>
         </Form>
-        {/*<Router>
-          <Switch>
-            <Link to="/signup">初めての方はこちら</Link>
-          </Switch>
-        </Router>*/}
+        <button><a href="./SignUp">初めての方はこちら!</a></button>
       </Row>
     </Container>
   );
