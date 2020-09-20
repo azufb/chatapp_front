@@ -24,7 +24,7 @@ export default function App() {
         <Auth>
           <Switch>
             <Route exact path="/home" component={Home} />
-            <Redirect to="/home" />
+            {/* <Redirect to="/home" /> */}
           </Switch>
         </Auth>
       </Switch>
