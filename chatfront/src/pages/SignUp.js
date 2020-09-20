@@ -20,10 +20,10 @@ const SignUp = () => {
       return
     }
     try {
-      await User.signUp(username, email, password);
+      await User.signUp(username, email, password)
       history.push("/home");
     } catch (e) {
-      console.log(e);
+      console.log(e.json())//失敗しても通る エラーメッセージ欲しい
     }
   };   
 
