@@ -21,9 +21,9 @@ class User {
         password
       }).then((response) => {
         this.token = response.data.token
-        console.log(this.token);
       })
     };
+    token = '';
 
     signUp = async (username, email, password) => {
       this.set('isLoggedIn', true);
@@ -32,7 +32,6 @@ class User {
           password
       }).then((response)=>{
           this.token = response.data.token
-          console.log(this.token);
       })
     }
 
