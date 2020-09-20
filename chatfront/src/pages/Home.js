@@ -1,12 +1,18 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-//import Logout from './Logout';
+import { useHistory } from "react-router-dom";
 
 export default function Home() {
+
+  const history = useHistory()
+
+  const logoutBtn =()=>{
+    history.push('./login')
+  }
   return (
     <div>
       <Container className="center">Welcome!!</Container>
-      {/*<button><Logout /></button>*/}
+      <button onClick={logoutBtn}>ログアウト</button>
     </div>
   );
 }

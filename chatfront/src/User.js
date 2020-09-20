@@ -15,15 +15,13 @@ class User {
     };
   
     login = async (email, password) => {
-      this.set('isLoggedIn', true);
       await axios.post('http://localhost:8000/api/auth/user/', {
         email,
         password
       }).then((response) => {
-        this.token = response.data.token
+        this.set = response.data.token
       })
     };
-    token = '';
 
     signUp = async (username, email, password) => {
       this.set('isLoggedIn', true);
