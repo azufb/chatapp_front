@@ -14,7 +14,8 @@
     "react-hook-form": "^6.8.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "react-upload-gallery": "^0.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
