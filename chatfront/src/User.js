@@ -19,7 +19,8 @@ class User {
         email,
         password
       }).then((response) => {
-        this.set = response.data.token
+        console.log(response);
+        this.set('isLoggedIn',response.data.token)
       })
     };
 
