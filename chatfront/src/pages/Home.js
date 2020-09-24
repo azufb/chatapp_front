@@ -10,6 +10,11 @@ export default function Home() {
   const logoutBtn =()=>{
     history.push('./login')
   }
+
+  /*const createRoomBtn = () => {
+    history.push('./createRoom')
+  }*/
+
   return (
     <div>
       <Container className="center">Welcome!!</Container>
