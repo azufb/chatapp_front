@@ -14,7 +14,6 @@ const Login = () => {
   const clickLoginBtn = async () => {
     try {
       await User.login(email, password);
-
       history.push("/home");
     } catch (e) {
       setErrMessage("メールアドレスかパスワードが違います");

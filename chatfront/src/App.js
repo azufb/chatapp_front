@@ -4,6 +4,7 @@ import {
   Route,
   Switch,
   Redirect,
+  withRouter
 } from "react-router-dom";
 
 import Auth from "./Auth";
@@ -16,15 +17,14 @@ import SignUp from "./pages/SignUp";
 export default function App() {
   return (
     <Router>
-      <Switch>
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/logout" component={Logout} />
-        <Route exact path="/signup" component={SignUp} />
+      <Switch>(
+        <Route exact path="/login" component={withRouter(Login)} />
+        <Route exact path="/signup" component={withRouter(SignUp)} />
 
         <Auth>
           <Switch>
             <Route exact path="/home" component={Home} />
-            <Redirect to="/home" />
+            <Redirect to="/home" /> 
           </Switch>
         </Auth>
       </Switch>

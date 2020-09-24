@@ -15,29 +15,33 @@ class User {
     };
   
     login = async (email, password) => {
-      this.set('isLoggedIn', true);
       await axios.post('http://localhost:8000/api/auth/user/', {
         email,
         password
       }).then((response) => {
-        this.token = response.data.token
-        console.log(this.token);
+        console.log(response);
+        this.set('isLoggedIn',response.data.token)
       })
     };
 
     signUp = async (username, email, password) => {
-      this.set('isLoggedIn', true);
-      await axios.post('http://localhost:8000/api/register/user/', {
-          email,
-          password
-      }).then((response)=>{
-          this.token = response.data.token
-          console.log(this.token);
+      this.set('username',username)
+      const data = { email,password };
+      fetch('http://localhost:8000/api/register/user/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       })
+      .then(response =>response.json())
+      .then(data => {
+        this.set('isLoggedIn', data.token);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     }
-
-    /** token保持 */
-    token = ''
   
     logout = async () => {
       if (this.isLoggedIn()) {
