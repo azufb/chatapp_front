@@ -1,5 +1,6 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useContext} from 'react'
 import { Card, Button, FormControl, Image, Form, Col } from "react-bootstrap";
+import {AuthContext} from '../AuthService'
 // import RUG from 'react-upload-gallery';
 // import 'react-upload-gallery/dist/style.css';
 
@@ -9,6 +10,7 @@ const Profile = () => {
   const [image,setImage]= useState('')
   const [profileImage,setProfileImage]= useState('')
   const [changeName,setChangeName] = useState('')
+  const {userToken,userName,setUserName,userIcon,setUserIcon} = useContext(AuthContext)
 
   /** username変更 */
   const saveName =(e)=>{
@@ -23,11 +25,11 @@ const Profile = () => {
       method:'PUT',
       headers:{
         'Content-Type': 'application/json',
-        'authorization':'JWT' + ' ' + window.localStorage.isLoggedIn
+        'authorization':'JWT' + ' ' + userToken
       },
       body:JSON.stringify(data)
     }).then(response=>response.json())
-    User.set('username',changeName)
+    setUserName(changeName)
   }
 
   // 仮画像
@@ -47,13 +49,13 @@ const Profile = () => {
        method: 'PUT',
        headers: {
          'Content-Type': 'application/json',
-         'authorization':'JWT' + ' ' + window.localStorage.isLoggedIn
+         'authorization':'JWT' + ' ' + userToken
        },
        body: JSON.stringify(data),
      })
      .then(response =>response.json())
    
-   User.set('icon_base64',profileImage)
+   setUserIcon(profileImage)
  }
 
   const imageUp =(e)=>{
@@ -87,11 +89,11 @@ const Profile = () => {
       <Card style={{ width: '25%' }}>
         <Image
           roundedCircle variant="top" 
-          src={window.localStorage.icon_base64?`data:image/png;base64,${window.localStorage.icon_base64}`:image}
+          src={userIcon?`data:image/png;base64,${userIcon}`:image}
           style={{width:250,height:250,margin:'0 auto'}}
         />
         <Card.Body>
-          <Card.Title style={{width:'30%',margin:'0 auto'}} class='font'>{window.localStorage.username}</Card.Title>
+          <Card.Title style={{width:'30%',margin:'0 auto'}} class='font'>{userName}</Card.Title>
           <Col xs={9} >
             <Form.Label style={{fontWeight:'bold'}}>名前変更</Form.Label>
           </Col>
@@ -101,7 +103,7 @@ const Profile = () => {
                 type="text"
                 value={changeName}
                 onChange={(e)=>{setChangeName(e.target.value)}}
-                placeholder={window.localStorage.username}
+                placeholder={userName}
               />
             </Col>
             <Button variant="outline-primary" onClick={saveName}>変更</Button>
