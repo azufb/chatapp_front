@@ -19,8 +19,7 @@ export default function App() {
     <Router>
       <Switch>(
         <Route exact path="/login" component={withRouter(Login)} />
-        <Route exact path="/logout" component={withRouter(Logout)} />
-        <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/signup" component={withRouter(SignUp)} />
 
         <Auth>
           <Switch>

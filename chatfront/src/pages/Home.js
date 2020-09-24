@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import { useHistory } from "react-router-dom";
+import Logout from './Logout';
+import Profile from "../components/Profile";
 
 export default function Home() {
 
@@ -17,8 +18,8 @@ export default function Home() {
   return (
     <div>
       <Container className="center">Welcome!!</Container>
-      <button onClick={logoutBtn}>ログアウト</button>
-      {/*<button onClick={createRoomBtn}>ルーム作成</button>*/}
+      <Profile/>
+      <button><Logout /></button>
     </div>
   );
 }
