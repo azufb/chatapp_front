@@ -30,7 +30,7 @@ export default function createRooms() {
                         />
                     </Form.Group>
                     <Button variant="primary" type="button">
-                        ログイン
+                        ルーム作成
                     </Button>
                 </Form>
             </Row>
