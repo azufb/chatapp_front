@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
+import createRooms from './pages/CreateRooms';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
         <Auth>
           <Switch>
             <Route exact path="/home" component={Home} />
+            <Route exact path='/createrooms' component={createRooms}/>
             <Redirect to="/home" /> 
           </Switch>
         </Auth>
