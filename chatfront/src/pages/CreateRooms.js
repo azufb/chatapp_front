@@ -7,6 +7,7 @@ export default function CreateRooms() {
     const [roomInput, setRoomInput] = useState([]);
 
     // 作成されたルームは配列に格納
+    
 
     // if文またはswitch文で、ルームidを比較して一致するページを表示する
 
