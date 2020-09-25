@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { Form, Button, Container, Row, Alert } from "react-bootstrap";
+import { Form, Button, Container, Row } from "react-bootstrap";
 
-export default function CreateRooms() {
-    const [room, setRoom] = useState([{name: "", id: ""}]);
+export default function createRooms() {
+    /*const [room, setRoom] = useState([{name: "", id: ""}]);
     const [input, setInput] = useState("");
-    const [roomInput, setRoomInput] = useState([]);
+    const [roomInput, setRoomInput] = useState([]);*/
 
     // 作成されたルームは配列に格納
+
 
     // if文またはswitch文で、ルームidを比較して一致するページを表示する
 
@@ -14,7 +15,7 @@ export default function CreateRooms() {
         <Container className="center">
             <Row className="justify-content-md-center">
                 <Form>
-                    {errMessage && <Alert variant="danger">{errMessage}</Alert>}
+                    {/*errMessage && <Alert variant="danger">{errMessage}</Alert>*/}
                     <p>
                         <b>ルーム作成</b>
                     </p>
@@ -23,11 +24,14 @@ export default function CreateRooms() {
                         <Form.Control
                             type="text"
                             onChange={(e) => {
-                                setInput(e.target.value);
+                                //setInput(e.target.value);
                             }}
-                            value={name}
+                            //value={name}
                         />
                     </Form.Group>
+                    <Button variant="primary" type="button">
+                        ルーム作成
+                    </Button>
                 </Form>
             </Row>
         </Container>
