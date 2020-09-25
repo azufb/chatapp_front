@@ -1,16 +1,32 @@
-import React from "react";
-import { Form, Button, Container } from "react-bootstrap";
+import React, { useState,useContext } from "react";
+import { Form, Button, Container, Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
-import User from "../User";
+import {AuthContext} from '../AuthService'
 
 const SignUp = () => {
   const { register, handleSubmit, errors, control, getValues } = useForm();
-
   const history = useHistory();
-  
-  const onSubmit =  (data) => {
-      User.signUp(data.username, data.email, data.confirmPassword,()=>{history.push('/home')})
+  const {setUserName,setUserToken} = useContext(AuthContext)
+
+  const onSubmit = async (data) => {
+    setUserName(data.username)
+    try{
+      const fetchData = { email:data.email,password:data.password };
+      const response = await fetch('http://localhost:8000/api/register/user/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(fetchData),
+      })
+      const responseJson = await response.json()
+        setUserToken(responseJson.token);
+        setUserName(data.username)
+        history.push('/home')
+    }catch(e){
+      console.log(e)
+    }
   };   
 
     return (
