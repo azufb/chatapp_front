@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Form, Button, Container, Row } from "react-bootstrap";
+import React from "react";
+import { Form, Button, Container } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import User from "../User";
@@ -9,13 +9,8 @@ const SignUp = () => {
 
   const history = useHistory();
   
-  const onSubmit = async (data) => {
-    try {
-      await User.signUp(data.username, data.email, data.confirmPassword)
-      history.push("/home");
-    } catch (e) {
-      console.log(e.json())//失敗しても通る エラーメッセージ欲しい
-    }
+  const onSubmit =  (data) => {
+      User.signUp(data.username, data.email, data.confirmPassword,()=>{history.push('/home')})
   };   
 
     return (
@@ -30,6 +25,7 @@ const SignUp = () => {
               {errors.username && <span className='errMsg'>※必須</span>}
               <Controller
                 name="username"
+                defaultValue=""
                 control={control}
                 rules={{
                   required: true,
@@ -46,6 +42,7 @@ const SignUp = () => {
               {errors?.email?.type === "required" && <span className='errMsg'>※必須</span>}
               <Controller
                 name="email"
+                defaultValue=""
                 control={control}
                 rules={{
                   required: true,
@@ -62,6 +59,7 @@ const SignUp = () => {
               {errors?.password?.type === "minLength" && <span className='errMsg'>6文字以上</span>}
               <Controller
                 name="password"
+                defaultValue=""
                 control={control}
                 rules={{
                   required: true,
@@ -76,6 +74,7 @@ const SignUp = () => {
               {errors?.password?.type === "minLength" && <span className='errMsg'>6文字以上</span>}
               <Controller
                 name="confirmPassword"
+                defaultValue=""
                 control={control}
                 rules={{
                   required: { required: true, minLength: 6 },
