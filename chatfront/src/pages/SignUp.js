@@ -1,20 +1,31 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { Form, Button, Container, Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
-import User from "../User";
+import {AuthContext} from '../AuthService'
 
 const SignUp = () => {
   const { register, handleSubmit, errors, control, getValues } = useForm();
-
   const history = useHistory();
-  
+  const {setUserName,setUserToken} = useContext(AuthContext)
+
   const onSubmit = async (data) => {
-    try {
-      await User.signUp(data.username, data.email, data.confirmPassword)
-      history.push("/home");
-    } catch (e) {
-      console.log(e.json())//失敗しても通る エラーメッセージ欲しい
+    setUserName(data.username)
+    try{
+      const fetchData = { email:data.email,password:data.password };
+      const response = await fetch('http://localhost:8000/api/register/user/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(fetchData),
+      })
+      const responseJson = await response.json()
+        setUserToken(responseJson.token);
+        setUserName(data.username)
+        history.push('/home')
+    }catch(e){
+      console.log(e)
     }
   };   
 
@@ -30,6 +41,7 @@ const SignUp = () => {
               {errors.username && <span className='errMsg'>※必須</span>}
               <Controller
                 name="username"
+                defaultValue=""
                 control={control}
                 rules={{
                   required: true,
@@ -46,6 +58,7 @@ const SignUp = () => {
               {errors?.email?.type === "required" && <span className='errMsg'>※必須</span>}
               <Controller
                 name="email"
+                defaultValue=""
                 control={control}
                 rules={{
                   required: true,
@@ -62,6 +75,7 @@ const SignUp = () => {
               {errors?.password?.type === "minLength" && <span className='errMsg'>6文字以上</span>}
               <Controller
                 name="password"
+                defaultValue=""
                 control={control}
                 rules={{
                   required: true,
@@ -76,6 +90,7 @@ const SignUp = () => {
               {errors?.password?.type === "minLength" && <span className='errMsg'>6文字以上</span>}
               <Controller
                 name="confirmPassword"
+                defaultValue=""
                 control={control}
                 rules={{
                   required: { required: true, minLength: 6 },
