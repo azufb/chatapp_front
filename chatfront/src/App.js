@@ -11,12 +11,13 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import LoggedInRoute from './LoggedInRoute'
+import createRooms from './pages/CreateRooms';
 
 export default function App() {
   return (
     <AuthProvider>
     <Router>
-      <Switch>(
+      <Switch>
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
         <LoggedInRoute exact path="/home" component={Home} />

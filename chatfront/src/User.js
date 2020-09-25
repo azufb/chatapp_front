@@ -15,23 +15,31 @@
 //       })
 //     };
 
-//     const signUp = async (username, email, password) => {
-//       const data = { email,password };
-//       fetch('http://localhost:8000/api/register/user/', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(data),
-//       })
-//       .then(response =>response.json())
-//       .then(data => {
-//         setUser(data.token);
-//       })
-//       .catch((error) => {
-//         console.error(error);
-//       });
+
+//      signUp = async (username, email, password, callback ) => {
+//       try{
+//         this.set('username',username)
+//         const data = { email,password };
+//         const response = await fetch('http://localhost:8000/api/register/user/', {
+//           method: 'POST',
+//           headers: {
+//             'Content-Type': 'application/json',
+//           },
+//           body: JSON.stringify(data),
+//         })
+//         const responseData = await response.json()
+//         if(responseData.detail){
+//           alert('ユーザーの作成に失敗しました。')
+//           return
+//         }else{
+//           this.set('isLoggedIn', responseData.token);
+//           callback()
+//         }
+//       }catch(e){
+//         console.log(e)
+//       }
 //     }
+
   
 //     const logout = async () => {
 //       if (this.isLoggedIn()) {

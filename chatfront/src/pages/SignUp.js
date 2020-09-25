@@ -6,7 +6,6 @@ import {AuthContext} from '../AuthService'
 
 const SignUp = () => {
   const { register, handleSubmit, errors, control, getValues } = useForm();
-
   const history = useHistory();
   const {setUserName,setUserToken} = useContext(AuthContext)
 
@@ -28,8 +27,6 @@ const SignUp = () => {
     }catch(e){
       console.log(e)
     }
-      
-
   };   
 
     return (
@@ -44,6 +41,7 @@ const SignUp = () => {
               {errors.username && <span className='errMsg'>※必須</span>}
               <Controller
                 name="username"
+                defaultValue=""
                 control={control}
                 rules={{
                   required: true,
@@ -60,6 +58,7 @@ const SignUp = () => {
               {errors?.email?.type === "required" && <span className='errMsg'>※必須</span>}
               <Controller
                 name="email"
+                defaultValue=""
                 control={control}
                 rules={{
                   required: true,
@@ -76,6 +75,7 @@ const SignUp = () => {
               {errors?.password?.type === "minLength" && <span className='errMsg'>6文字以上</span>}
               <Controller
                 name="password"
+                defaultValue=""
                 control={control}
                 rules={{
                   required: true,
@@ -90,6 +90,7 @@ const SignUp = () => {
               {errors?.password?.type === "minLength" && <span className='errMsg'>6文字以上</span>}
               <Controller
                 name="confirmPassword"
+                defaultValue=""
                 control={control}
                 rules={{
                   required: { required: true, minLength: 6 },
