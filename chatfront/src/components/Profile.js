@@ -93,7 +93,7 @@ const Profile = () => {
           style={{width:250,height:250,margin:'0 auto'}}
         />
         <Card.Body>
-          <Card.Title style={{width:'30%',margin:'0 auto'}} class='font'>{userName}</Card.Title>
+          <Card.Title style={{width:'30%',margin:'0 auto'}} className='font'>{userName}</Card.Title>
           <Col xs={9} >
             <Form.Label style={{fontWeight:'bold'}}>名前変更</Form.Label>
           </Col>
