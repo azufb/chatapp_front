@@ -11,17 +11,26 @@ const CreateRooms = () => {
     const [id, setId] = useState("");
     const [icon_base64, setProfileImage] = useState("");
 
-    const {setRoomsToken}  = useContext(AuthContext)
+    const { userToken,setRoomsToken }  = useContext(AuthContext)
 
     // 作成されたルームは配列に格納
     // if文またはswitch文で、ルームidを比較して一致するページを表示する
 
     const createRoomsBtn = async () => {
-        await axios.post('http://localhost:8000/api/rooms/', {
-            id,
-            icon_base64
-        }).then((response) => {
-            setRoomsToken(response.data.token)
+        // await axios.post('http://localhost:8000/api/rooms/', {
+        //     id,
+        //     icon_base64
+        // }).then((response) => {
+        //     console.log(response);
+        //     setRoomsToken(response.data.token)
+        // })
+        const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'JWT' + ' ' + userToken
+        }
+        const data ={id,icon_base64}
+        await axios.post('http://localhost:8000/api/rooms/', data, {
+            headers: headers
         })
     };
 
