@@ -21,7 +21,7 @@ export default function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
         <LoggedInRoute exact path="/home" component={Home} />
-        <LoggedInRoute exact path="/createrooms" component={CreateRooms} />
+        <Route exact path="/createrooms" component={CreateRooms} />
         <Redirect push to='/home'/>
       </Switch>
     </Router>
