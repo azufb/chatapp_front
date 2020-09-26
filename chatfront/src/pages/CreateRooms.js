@@ -4,28 +4,28 @@ import { AuthContext } from '../AuthService';
 import axios from "axios";
 
 const CreateRooms = () => {
-    /*const [room, setRoom] = useState([{name: "", id: ""}]);
-    const [input, setInput] = useState("");
-    const [roomInput, setRoomInput] = useState([]);*/
-
     const [id, setId] = useState("");
-    const [icon_base64, setProfileImage] = useState("");
+    const [icon_base64, setRoomImage] = useState("");
 
-    const {setRoomsToken}  = useContext(AuthContext)
+    //const {setRoomsToken}  = useContext(AuthContext)
 
-    // 作成されたルームは配列に格納
-    // if文またはswitch文で、ルームidを比較して一致するページを表示する
+    let createRoomsBtn = new URLSearchParams();
+    URLSearchParams.append(
+        {
+            'text':id,
+            'file': icon_base64
+        }
+    );
 
-    const createRoomsBtn = async () => {
-        await axios.post('http://localhost:8000/api/rooms/', {
-            id,
-            icon_base64
-        }).then((response) => {
-            setRoomsToken(response.data.token)
+    axios.post('http://localhost:8000/api/rooms/', createRoomsBtn)
+        .then(response => {
+            console.log(id);
+        }).catch(error => {
+            console.log(error);
         })
-    };
+    
 
-    const imageUp =(e)=>{
+    const image =(e)=>{
         const file = e.target.files[0];
         getBase64(file)
     }
@@ -33,7 +33,7 @@ const CreateRooms = () => {
     const getBase64 = (file)=> {
         const reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onload = (()=> setProfileImage(reader.result.replace(/^data:\w+\/\w+;base64,/, '')))
+        reader.onload = (()=> setRoomImage(reader.result.replace(/^data:\w+\/\w+;base64,/, '')))
     }
     
     
@@ -57,7 +57,12 @@ const CreateRooms = () => {
                     </Form.Group>
                     <Form.Group controlId="name">
                         <Form.Label>アイコン画像</Form.Label>
-                        <FormControl type='file' onChange={imageUp} />
+                        <FormControl 
+                            type='file'
+                            onChange={(e) => {
+                            setRoomImage(e.target.value);
+                         }} 
+                         onChange={image} />
                     </Form.Group>
                     <Button variant="primary" type="button" onClick={createRoomsBtn}>
                         ルーム作成
