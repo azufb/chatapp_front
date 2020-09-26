@@ -22,7 +22,7 @@ const CreateRooms = () => {
             console.log(id);
         }).catch(error => {
             console.log(error);
-        }
+        });
     
     const roomImage = (e) => {
         const file = e.target.files[0];
@@ -61,7 +61,7 @@ const CreateRooms = () => {
                             onChange={(e) => {
                             setRoomImage(e.target.value);
                          }} 
-                         onChange={roomimage} />
+                         onChange={roomImage} />
                     </Form.Group>
                     <Button variant="primary" type="button" onClick={createRoomsBtn}>
                         ルーム作成
