@@ -22,27 +22,11 @@ const CreateRooms = () => {
             console.log(id);
         }).catch(error => {
             console.log(error);
-    /*const createRoomsBtn = async () => {
-        // await axios.post('http://localhost:8000/api/rooms/', {
-        //     id,
-        //     icon_base64
-        // }).then((response) => {
-        //     console.log(response);
-        //     setRoomsToken(response.data.token)
-        // })
-        const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'JWT' + ' ' + userToken
         }
-        const data ={id,icon_base64}
-        await axios.post('http://localhost:8000/api/rooms/', data, {
-            headers: headers
-        })*/
     
-
-    const image =(e)=>{
+    const roomImage = (e) => {
         const file = e.target.files[0];
-        getBase64(file)
+        getBase64(file);
     }
 
     const getBase64 = (file)=> {
@@ -77,7 +61,7 @@ const CreateRooms = () => {
                             onChange={(e) => {
                             setRoomImage(e.target.value);
                          }} 
-                         onChange={image} />
+                         onChange={roomimage} />
                     </Form.Group>
                     <Button variant="primary" type="button" onClick={createRoomsBtn}>
                         ルーム作成
