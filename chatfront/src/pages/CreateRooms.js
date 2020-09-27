@@ -5,36 +5,32 @@ import axios from "axios";
 
 const CreateRooms = () => {
     const [id, setId] = useState("");
-    const [icon_base64, setRoomImage] = useState("");
+    const [icon_base64, setProfileImage] = useState("");
 
-    //const {setRoomsToken}  = useContext(AuthContext)
+    const { userToken,setRoomsToken }  = useContext(AuthContext)
 
-    let createRoomsBtn = new URLSearchParams();
-    URLSearchParams.append(
-        {
-            'text':id,
-            'file': icon_base64
+    const createRoomsBtn = async () => {
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'JWT' + ' ' + userToken
         }
-    );
-
-    axios.post('http://localhost:8000/api/rooms/', createRoomsBtn)
-        .then(response => {
-            console.log(id);
-        }).catch(error => {
-            console.log(error);
-        });
+        const data ={id,icon_base64}
+        await axios.post('http://localhost:8000/api/rooms/', data, {
+            headers: headers
+        })
+    };
     
-    const roomImage = (e) => {
+    const imageUp =(e)=>{
         const file = e.target.files[0];
-        getBase64(file);
+        getBase64(file)
     }
-
     const getBase64 = (file)=> {
         const reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onload = (()=> setRoomImage(reader.result.replace(/^data:\w+\/\w+;base64,/, '')))
+        reader.onload = (()=> setProfileImage(reader.result.replace(/^data:\w+\/\w+;base64,/, '')))
     }
     
+
     
     return (
         <Container className="center">
@@ -57,11 +53,8 @@ const CreateRooms = () => {
                     <Form.Group controlId="name">
                         <Form.Label>アイコン画像</Form.Label>
                         <FormControl 
-                            type='file'
-                            onChange={(e) => {
-                            setRoomImage(e.target.value);
-                         }} 
-                         onChange={roomImage} />
+                        type='file' 
+                        onChange={imageUp}/>
                     </Form.Group>
                     <Button variant="primary" type="button" onClick={createRoomsBtn}>
                         ルーム作成
