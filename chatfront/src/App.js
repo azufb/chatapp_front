@@ -1,35 +1,30 @@
 import React from "react";
 import {
   BrowserRouter as Router,
+  Redirect,
   Route,
   Switch,
-  Redirect,
-  withRouter
 } from "react-router-dom";
-
-import Auth from "./Auth";
+import {AuthProvider} from './AuthService'
 
 import Login from "./pages/Login";
-import Logout from "./pages/Logout";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
-import createRooms from './pages/CreateRooms';
+import LoggedInRoute from './LoggedInRoute'
+import CreateRooms from './pages/CreateRooms';
 
 export default function App() {
   return (
+    <AuthProvider>
     <Router>
-      <Switch>(
-        <Route exact path="/login" component={withRouter(Login)} />
-        <Route exact path="/signup" component={withRouter(SignUp)} />
-
-        <Auth>
-          <Switch>
-            <Route exact path="/home" component={Home} />
-            <Route exact path='/createrooms' component={createRooms}/>
-            <Redirect to="/home" /> 
-          </Switch>
-        </Auth>
+      <Switch>
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={SignUp} />
+        <LoggedInRoute exact path="/home" component={Home} />
+        <Route exact path="/createrooms" component={CreateRooms} />
+        <Redirect push to='/home'/>
       </Switch>
     </Router>
+    </AuthProvider>
   );
 }

@@ -1,23 +1,26 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { Form, Button, Container, Row, Alert } from "react-bootstrap";
 import { Link,useHistory } from "react-router-dom";
-import User from "../User";
-
+import { AuthContext } from '../AuthService'
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
 
+  const {setUserToken}  = useContext(AuthContext)
+
   const history = useHistory();
 
   const clickLoginBtn = async () => {
-    try {
-      await User.login(email, password);
-      history.push("/home");
-    } catch (e) {
-      setErrMessage("メールアドレスかパスワードが違います");
-    }
+    await axios.post('http://localhost:8000/api/auth/user/', {
+        email,
+        password
+      }).then((response) => {
+        setUserToken(response.data.token)
+        history.push('/home')
+      })
   };
 
   return (
