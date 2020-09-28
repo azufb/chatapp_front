@@ -19,6 +19,7 @@ const CreateRooms = () => {
             headers: headers
         })
     };
+    console.log(userToken);
     
     const imageUp =(e)=>{
         const file = e.target.files[0];
