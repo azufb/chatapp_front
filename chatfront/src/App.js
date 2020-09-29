@@ -18,9 +18,9 @@ export default function App() {
     <AuthProvider>
     <Router>
       <Switch>
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={SignUp} />
-        <LoggedInRoute exact path="/home" component={Home} />
+        <Route path="/home" component={Home} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={SignUp} />
         <Route exact path="/createrooms" component={CreateRooms} />
         <Redirect push to='/home'/>
       </Switch>
