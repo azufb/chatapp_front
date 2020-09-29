@@ -5,7 +5,7 @@ import axios from "axios";
 
 const CreateRooms = () => {
     const [id, setId] = useState("");
-    const [icon_base64, setProfileImage] = useState("");
+    const [icon_base64, setRoomImage] = useState("");
 
     const { userToken,setRoomsToken }  = useContext(AuthContext)
 
@@ -27,7 +27,7 @@ const CreateRooms = () => {
     const getBase64 = (file)=> {
         const reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onload = (()=> setProfileImage(reader.result.replace(/^data:\w+\/\w+;base64,/, '')))
+        reader.onload = (()=> setRoomImage(reader.result.replace(/^data:\w+\/\w+;base64,/, '')))
     }
     
 
