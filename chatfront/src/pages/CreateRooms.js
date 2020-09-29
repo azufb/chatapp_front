@@ -1,16 +1,38 @@
-import React, { useState } from "react";
-import { Form, Button, Container, Row } from "react-bootstrap";
+import React, { useState, useContext } from "react";
+import { Form, FormControl, Button, Container, Row } from "react-bootstrap";
+import { AuthContext } from '../AuthService';
+import axios from "axios";
 
-export default function createRooms() {
-    /*const [room, setRoom] = useState([{name: "", id: ""}]);
-    const [input, setInput] = useState("");
-    const [roomInput, setRoomInput] = useState([]);*/
+const CreateRooms = () => {
+    const [id, setId] = useState("");
+    const [icon_base64, setProfileImage] = useState("");
 
-    // 作成されたルームは配列に格納
+    const { userToken,setRoomsToken }  = useContext(AuthContext)
 
+    const createRoomsBtn = async () => {
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'JWT' + ' ' + userToken
+        }
+        const data ={id,icon_base64}
+        await axios.post('http://localhost:8000/api/rooms/', data, {
+            headers: headers
+        })
+    };
+    console.log(userToken);
+    
+    const imageUp =(e)=>{
+        const file = e.target.files[0];
+        getBase64(file)
+    }
+    const getBase64 = (file)=> {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (()=> setProfileImage(reader.result.replace(/^data:\w+\/\w+;base64,/, '')))
+    }
+    
 
-    // if文またはswitch文で、ルームidを比較して一致するページを表示する
-
+    
     return (
         <Container className="center">
             <Row className="justify-content-md-center">
@@ -24,12 +46,18 @@ export default function createRooms() {
                         <Form.Control
                             type="text"
                             onChange={(e) => {
-                                //setInput(e.target.value);
+                                setId(e.target.value);
                             }}
-                            //value={name}
+                            value={id}
                         />
                     </Form.Group>
-                    <Button variant="primary" type="button">
+                    <Form.Group controlId="name">
+                        <Form.Label>アイコン画像</Form.Label>
+                        <FormControl 
+                        type='file' 
+                        onChange={imageUp}/>
+                    </Form.Group>
+                    <Button variant="primary" type="button" onClick={createRoomsBtn}>
                         ルーム作成
                     </Button>
                 </Form>
@@ -37,3 +65,5 @@ export default function createRooms() {
         </Container>
     )
 }
+
+export default CreateRooms;
