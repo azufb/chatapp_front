@@ -32,22 +32,24 @@ const RoomList = () => {
     //  console.log(data);//undefined
     // })
   
-    const roomSearch =(e)=>{
-      e.preventDefault()
-      setSearchRoom('')
-      const resultRoom = rooms.find((room)=>room.id === searchRoom)
-      setDisplayRoom(resultRoom)
-    }
+    // room検索
+    // const roomSearch =(e)=>{
+    //   e.preventDefault()
+    //   setSearchRoom('')
+    //   const resultRoom = rooms.find((room)=>room.id === searchRoom)
+    //   setDisplayRoom(resultRoom)
+    // }
 
   return (
     <>
     <div>
-      <label>ルーム検索</label>
+      {/* <label>ルーム検索</label>
       <form>
         <input type='text' value={searchRoom} onChange={(e)=>{setSearchRoom(e.target.value)}}/>
         <button onClick={roomSearch}>検索</button>
-      </form>
+      </form> */}
     </div>
+    <label>ルーム一覧</label>
     <div>{displayRoom && displayRoom.id}</div>
     </>
   )

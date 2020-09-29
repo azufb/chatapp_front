@@ -13,11 +13,6 @@ const Login = () => {
 
   const history = useHistory();
 
-  //loginページでuserTokenが空
-  if(signupToken){
-    history.push('/home')
-  }
-
   const clickLoginBtn = async () => {
     await axios.post('http://localhost:8000/api/auth/user/', {
         email,
