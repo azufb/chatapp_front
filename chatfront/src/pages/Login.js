@@ -9,7 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
 
-  const {setUserToken}  = useContext(AuthContext)
+  const { signupToken,userToken, setUserToken }  = useContext(AuthContext)
 
   const history = useHistory();
 
