@@ -10,7 +10,6 @@ import {AuthProvider} from './AuthService'
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
-import LoggedInRoute from './LoggedInRoute'
 import CreateRooms from './pages/CreateRooms';
 
 export default function App() {
