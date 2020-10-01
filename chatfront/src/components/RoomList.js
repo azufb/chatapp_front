@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const RoomList = () => {
   const [rooms,setRooms] = useState([])
-  const [searchRoom,setSearchRoom] = useState('')
+  // const [searchRoom,setSearchRoom] = useState('')
   const [displayRoom,setDisplayRoom] = useState([])
   const { userToken } = useContext(AuthContext)
   
@@ -16,9 +16,10 @@ const RoomList = () => {
                   'Authorization': 'JWT' + ' ' + userToken
                 }
               })
-      setRooms(fetchData.data.results)
+      setDisplayRoom(fetchData.data.results)
     })()
   }, [])
+  console.log(displayRoom);
 
   // 何故かfetchでgetできない為一旦axios
     // fetch('http://localhost:8000/api/rooms/?limit=100',{
@@ -50,7 +51,15 @@ const RoomList = () => {
       </form> */}
     </div>
     <label>ルーム一覧</label>
-    <div>{displayRoom && displayRoom.id}</div>
+    <div>{displayRoom && displayRoom.map((room)=>{
+      return(
+        <ul style={{listStyle: 'none'}}>
+          <li>
+            <button style={{background:'none',border:'none'}}>{room.id}</button>
+          </li>
+        </ul>
+      )
+    })}</div>
     </>
   )
 }
