@@ -3,7 +3,7 @@ import { AuthContext } from '../AuthService'
 import axios from 'axios'
 
 const RoomList = () => {
-  const [rooms,setRooms] = useState([])
+  // const [rooms,setRooms] = useState([])
   // const [searchRoom,setSearchRoom] = useState('')
   const [displayRoom,setDisplayRoom] = useState([])
   const { userToken } = useContext(AuthContext)
@@ -19,7 +19,6 @@ const RoomList = () => {
       setDisplayRoom(fetchData.data.results)
     })()
   }, [])
-  console.log(displayRoom);
 
   // 何故かfetchでgetできない為一旦axios
     // fetch('http://localhost:8000/api/rooms/?limit=100',{
