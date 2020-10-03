@@ -5,12 +5,13 @@ import { useHistory, Link } from "react-router-dom";
 //import CreateRooms from './CreateRooms';
 import RoomList from '../components/RoomList'
 import {AuthContext} from '../AuthService'
+import Chat from '../components/chat'
 
 export default function Home() {
 
   const history = useHistory()
 
-  const {userToken} = useContext(AuthContext)
+  const {userToken,setCurrentRoomId} = useContext(AuthContext)
 
 
 
@@ -28,6 +29,7 @@ export default function Home() {
       <Profile/>
       <button onClick={()=>{history.push('./login')}}>ログアウト</button>
       <button onClick={() => {history.push('./createrooms')}}>ルーム作成</button>
+      <Chat/>
       {/*<button><Logout /></button>*/}
     </div>
   );

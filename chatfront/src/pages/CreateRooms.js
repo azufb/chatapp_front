@@ -4,10 +4,9 @@ import { AuthContext } from '../AuthService';
 import axios from "axios";
 
 const CreateRooms = () => {
-    const [id, setId] = useState("");
     const [icon_base64, setRoomImage] = useState("");
 
-    const { userToken,setRoomsToken }  = useContext(AuthContext)
+    const { userToken,roomId, setRoomId }  = useContext(AuthContext)
 
     const createRoomsBtn = async () => {
     const headers = {
