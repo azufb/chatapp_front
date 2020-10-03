@@ -1,4 +1,4 @@
-import React,{useState,useContext} from 'react'
+import React,{useState,useContext, useEffect} from 'react'
 import { Card, Button, FormControl, Image, Form, Col } from "react-bootstrap";
 import {AuthContext} from '../AuthService'
 // import RUG from 'react-upload-gallery';
@@ -33,8 +33,10 @@ const Profile = () => {
   }
 
   // 仮画像
-  fetch('https://pixabay.com/api/?key=18372394-97cd741cc7c269ecc64b2c86f')
-  .then((response)=>response.json()).then((response)=>setImage(response.hits[0].userImageURL))
+  useEffect(()=>{
+    fetch('https://pixabay.com/api/?key=18372394-97cd741cc7c269ecc64b2c86f')
+    .then((response)=>response.json()).then((response)=>setImage(response.hits[0].userImageURL))
+  },[])
 
  /** 画像変更 */
  const saveImage =(e)=>{
@@ -89,11 +91,11 @@ const Profile = () => {
       <Card style={{ width: '25%' }}>
         <Image
           roundedCircle variant="top" 
-          src={userIcon?`data:image/png;base64,${userIcon}`:image}
+          src={userToken && userIcon?`data:image/png;base64,${userIcon}`:image}
           style={{width:250,height:250,margin:'0 auto'}}
         />
         <Card.Body>
-          <Card.Title style={{width:'30%',margin:'0 auto'}} className='font'>{userName}</Card.Title>
+          <Card.Title style={{width:'30%',margin:'0 auto'}} className='font'>{userToken && userName}</Card.Title>
           <Col xs={9} >
             <Form.Label style={{fontWeight:'bold'}}>名前変更</Form.Label>
           </Col>
