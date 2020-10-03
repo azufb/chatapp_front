@@ -11,6 +11,7 @@ export default function Home() {
   const history = useHistory()
 
   const {userToken} = useContext(AuthContext)
+  console.log(userToken);
 
 
 
@@ -28,6 +29,7 @@ export default function Home() {
       <Profile/>
       <button onClick={()=>{history.push('./login')}}>ログアウト</button>
       <button onClick={() => {history.push('./createrooms')}}>ルーム作成</button>
+      <RoomList/>
       {/*<button><Logout /></button>*/}
     </div>
   );
