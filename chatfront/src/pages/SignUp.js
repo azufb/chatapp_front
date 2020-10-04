@@ -10,7 +10,6 @@ const SignUp = () => {
   const {setUserName,setUserToken} = useContext(AuthContext)
 
   const onSubmit = async (data) => {
-    setUserName(data.username)
     try{
       const fetchData = { email:data.email,password:data.password };
       const response = await fetch('http://localhost:8000/api/register/user/', {
@@ -20,10 +19,15 @@ const SignUp = () => {
         },
         body: JSON.stringify(fetchData),
       })
-      const responseJson = await response.json()
-        setUserToken(responseJson.token);
-        setUserName(data.username)
-        history.push('/home')
+      if(response.ok){
+        const responseJson = await response.json()
+          setUserToken(responseJson.token);
+          setUserName(data.username)
+          history.push('/home')
+      }else{
+        alert('アカウントの作成に失敗しました')
+        return
+      }
     }catch(e){
       console.log(e)
     }

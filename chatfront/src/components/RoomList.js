@@ -3,8 +3,8 @@ import { AuthContext } from '../AuthService'
 import axios from 'axios'
 
 const RoomList = () => {
-  const [rooms,setRooms] = useState([])
-  const [searchRoom,setSearchRoom] = useState('')
+  // const [rooms,setRooms] = useState([])
+  // const [searchRoom,setSearchRoom] = useState('')
   const [displayRoom,setDisplayRoom] = useState([])
   const { userToken } = useContext(AuthContext)
   
@@ -16,7 +16,7 @@ const RoomList = () => {
                   'Authorization': 'JWT' + ' ' + userToken
                 }
               })
-      setRooms(fetchData.data.results)
+      setDisplayRoom(fetchData.data.results)
     })()
   }, [])
 
@@ -50,7 +50,15 @@ const RoomList = () => {
       </form> */}
     </div>
     <label>ルーム一覧</label>
-    <div>{displayRoom && displayRoom.id}</div>
+    <div>{displayRoom && displayRoom.map((room)=>{
+      return(
+        <ul style={{listStyle: 'none'}}>
+          <li>
+            <button style={{background:'none',border:'none'}}>{room.id}</button>
+          </li>
+        </ul>
+      )
+    })}</div>
     </>
   )
 }

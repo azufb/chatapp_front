@@ -11,9 +11,7 @@ export default function Home() {
 
   const history = useHistory()
 
-  const {userToken,setCurrentRoomId} = useContext(AuthContext)
-
-
+  const {userToken} = useContext(AuthContext)
 
   /*const logoutBtn =()=>{
     history.push('./login')
@@ -30,6 +28,7 @@ export default function Home() {
       <button onClick={()=>{history.push('./login')}}>ログアウト</button>
       <button onClick={() => {history.push('./createrooms')}}>ルーム作成</button>
       <Chat/>
+      <RoomList/>
       {/*<button><Logout /></button>*/}
     </div>
   );
