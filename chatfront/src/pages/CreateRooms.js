@@ -5,9 +5,8 @@ import axios from "axios";
 import {useHistory} from 'react-router-dom'
 
 const CreateRooms = () => {
-    const [id, setId] = useState("");
     const [icon_base64, setRoomImage] = useState("");
-
+    const [id, setId] = useState('')
     const { userToken,setRoomsToken }  = useContext(AuthContext)
     const history = useHistory()
 

@@ -1,18 +1,21 @@
 import React,{useContext} from 'react';
 import { Container } from 'react-bootstrap';
 import Profile from "../components/Profile";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, Redirect } from "react-router-dom";
 //import CreateRooms from './CreateRooms';
 import RoomList from '../components/RoomList'
 import {AuthContext} from '../AuthService'
+import Chat from '../components/chat'
 
 export default function Home() {
 
   const history = useHistory()
 
-  const {userToken} = useContext(AuthContext)
-  console.log(userToken);
+  const {userToken,userName} = useContext(AuthContext)
 
+  if(!userToken){
+    return <Redirect to='/login'/>
+  }
 
 
   /*const logoutBtn =()=>{
@@ -29,6 +32,7 @@ export default function Home() {
       <Profile/>
       <button onClick={()=>{history.push('./login')}}>ログアウト</button>
       <button onClick={() => {history.push('./createrooms')}}>ルーム作成</button>
+      <Chat/>
       <RoomList/>
       {/*<button><Logout /></button>*/}
     </div>
