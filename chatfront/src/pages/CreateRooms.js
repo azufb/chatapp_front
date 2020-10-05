@@ -6,6 +6,7 @@ import {useHistory} from 'react-router-dom'
 
 const CreateRooms = () => {
     const [icon_base64, setRoomImage] = useState("");
+    const [id, setId] = useState('')
     const { userToken,setRoomsToken }  = useContext(AuthContext)
     const history = useHistory()
 
