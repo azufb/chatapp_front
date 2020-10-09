@@ -34,6 +34,7 @@ export default function Home() {
       <button onClick={() => {history.push('./createrooms')}}>ルーム作成</button>
       <Chat/>
       <RoomIdInput/>
+      <CreateRooms />
       {/*<button><Logout /></button>*/}
     </div>
   );
