@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 import Profile from "../components/Profile";
 import { useHistory, Link, Redirect } from "react-router-dom";
 //import CreateRooms from './CreateRooms';
-import RoomList from '../components/RoomList'
+import RoomIdInput from '../components/RoomIdInput'
 import {AuthContext} from '../AuthService'
 import Chat from '../components/chat'
 
@@ -33,7 +33,7 @@ export default function Home() {
       <button onClick={()=>{history.push('./login')}}>ログアウト</button>
       <button onClick={() => {history.push('./createrooms')}}>ルーム作成</button>
       <Chat/>
-      <RoomList/>
+      <RoomIdInput/>
       {/*<button><Logout /></button>*/}
     </div>
   );
