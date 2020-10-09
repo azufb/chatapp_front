@@ -18,10 +18,13 @@ export const AuthProvider =({children})=>{
   const [userIcon,setUserIcon] = useLocalState('userIcon')
   const [roomsToken,setRoomsToken] = useLocalState('roomsToken')
 
+  const [currentRoomId, setCurrentRoomId] = useState('')
+
   return(
     <AuthContext.Provider
       value={{
-        userToken,setUserToken,userName,setUserName,userIcon,setUserIcon,setRoomsToken
+        userToken,setUserToken,userName,setUserName,userIcon,setUserIcon,
+        currentRoomId, setCurrentRoomId
       }}
     >
       {children}

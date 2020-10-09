@@ -4,8 +4,6 @@ import {AuthContext} from '../AuthService'
 // import RUG from 'react-upload-gallery';
 // import 'react-upload-gallery/dist/style.css';
 
-import User from '../User'
-
 const Profile = () => {
   const [image,setImage]= useState('')
   const [profileImage,setProfileImage]= useState('')

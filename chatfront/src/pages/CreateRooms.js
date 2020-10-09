@@ -5,9 +5,8 @@ import axios from "axios";
 import {useHistory} from 'react-router-dom'
 
 const CreateRooms = () => {
-    const [id, setId] = useState("");
     const [icon_base64, setRoomImage] = useState("");
-
+    const [id, setId] = useState('')
     const { userToken,setRoomsToken }  = useContext(AuthContext)
     const history = useHistory()
 
@@ -25,7 +24,6 @@ const CreateRooms = () => {
             await axios.post('http://localhost:8000/api/rooms/', data, {
                 headers: headers
             })
-            history.push('/home')
         }
     };
     
@@ -68,9 +66,6 @@ const CreateRooms = () => {
                     </Form.Group>
                     <Button variant="primary" type="button" onClick={createRoomsBtn}>
                         ルーム作成
-                    </Button>
-                    <Button variant="primary" type="button" onClick={()=>{history.goBack()}}>
-                        ホームへ
                     </Button>
                 </Form>
             </Row>
