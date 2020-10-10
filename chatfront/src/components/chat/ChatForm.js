@@ -12,19 +12,21 @@ const ChatForm = ({addMessage,message,setMessage,setImage ,imageUp}) => {
 
   return (
     <div>
-      <Form >
+      <Form>
         <Form.Row>
-          <Col xs={5}>
+          <Form.Group controlId="name">
             <FormControl
               as="textarea"
               rows="5"
               value={message}
               onChange={(e)=>{setMessage(e.target.value)}}
             />
-          </Col>
-          </Form.Row>
+          </Form.Group>
+        </Form.Row>
+        <Form.Group controlId="name">
           <FormControl type='file' onChange={imageUp}/>
-        <Button onClick={onFormSubmit}>送信</Button>
+          <Button onClick={onFormSubmit}>送信</Button>
+        </Form.Group>
       </Form>
     </div>
   )
