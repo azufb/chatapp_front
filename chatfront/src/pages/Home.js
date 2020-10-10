@@ -33,7 +33,7 @@ export default function Home() {
       <button onClick={()=>{history.push('./login')}}>ログアウト</button>
       <button onClick={() => {history.push('./createrooms')}}>ルーム作成</button>
       <Chat/>
-      <RoomList/>
+      <RoomIdInput/>
       <CreateRooms />
       {/*<button><Logout /></button>*/}
     </div>
