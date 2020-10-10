@@ -7,3 +7,17 @@
   font-family: 'Architects Daughter','cursive';
   font-size: 24px
 }
+
+.homeDisp {
+  display: flex;
+}
+
+.homeLeft {
+  width: 700px;
+  border-right: 1px solid black;
+}
+
+.homeRight {
+  width: 700px;
+  margin-left: 20px;
+}

@@ -2,10 +2,10 @@ import React,{useContext} from 'react';
 import { Container } from 'react-bootstrap';
 import Profile from "../components/Profile";
 import { useHistory, Link, Redirect } from "react-router-dom";
-//import CreateRooms from './CreateRooms';
-import RoomIdInput from '../components/RoomIdInput'
-import {AuthContext} from '../AuthService'
-import Chat from '../components/chat'
+import CreateRooms from './CreateRooms';
+import RoomIdInput from "../components/RoomIdInput";
+import {AuthContext} from '../AuthService';
+import Chat from '../components/chat';
 
 export default function Home() {
 
@@ -27,15 +27,17 @@ export default function Home() {
   }*/
 
   return (
-    <div>
-      <Container className="center">Welcome!!</Container>
-      <Profile/>
-      <button onClick={()=>{history.push('./login')}}>ログアウト</button>
-      <button onClick={() => {history.push('./createrooms')}}>ルーム作成</button>
-      <Chat/>
-      <RoomIdInput/>
-      <CreateRooms />
-      {/*<button><Logout /></button>*/}
+    <div className="homeDisp">
+      <div className="homeLeft">
+        <Container className="center">Welcome!!</Container>
+        <Profile/>
+        <CreateRooms />
+        <RoomIdInput/>
+        <button onClick={()=>{history.push('./login')}}>ログアウト</button>
+      </div>
+      <div className="homeRight">
+        <Chat/>
+      </div>
     </div>
   );
 }
