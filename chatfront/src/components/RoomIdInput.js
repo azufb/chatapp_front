@@ -38,10 +38,15 @@ const RoomIdInput = () => {
   
   return (
     <>
-      <Form >
-        <Col xs={3}>
-          <Form.Label>ルームID入力</Form.Label>
-          <FormControl type='text' value={searchRoom} onChange={(e)=>{setSearchRoom(e.target.value)}}/>
+      <p>
+        <b>ルーム入室</b>
+      </p>
+      <Form>
+        <Col xs={5}>
+          <Form.Group controlId="name">
+            <Form.Label>ルームID入力</Form.Label>
+            <FormControl type='text' value={searchRoom} onChange={(e)=>{setSearchRoom(e.target.value)}}/>
+          </Form.Group>
           <Button onClick={roomSearch}>入力</Button>
         </Col>
       </Form>

@@ -86,7 +86,7 @@ const Profile = () => {
 
   return (
     <div>
-      <Card style={{ width: '25%' }}>
+      <Card style={{ width: '90%' }}>
         <Image
           roundedCircle variant="top" 
           src={userToken && userIcon?`data:image/png;base64,${userIcon}`:image}
