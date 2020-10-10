@@ -1,11 +1,12 @@
 import React,{useContext} from 'react';
+import { Redirect } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import Profile from "../components/Profile";
 import { useHistory, Link } from "react-router-dom";
 import CreateRooms from './CreateRooms';
-import RoomList from '../components/RoomList'
-import {AuthContext} from '../AuthService'
-import Chat from '../components/chat'
+import RoomList from '../components/RoomList';
+import {AuthContext} from '../AuthService';
+import Chat from '../components/chat';
 
 export default function Home() {
 
