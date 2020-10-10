@@ -12,6 +12,9 @@ const ChatForm = ({addMessage,message,setMessage,setImage ,imageUp}) => {
 
   return (
     <div>
+      <p>
+        <b>チャット</b>
+      </p>
       <Form>
         <Form.Row>
           <Form.Group controlId="name">
