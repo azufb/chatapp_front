@@ -1,15 +1,17 @@
 import React,{ useState, useEffect, useContext } from 'react'
 import { AuthContext } from '../AuthService'
 import { Button, FormControl, Form, Col } from "react-bootstrap";
+import axios from 'axios';
 
 
 const RoomIdInput = () => {
   const [searchRoom,setSearchRoom] = useState("")
-  const [rooms, setRooms]=useState([])
+  const [rooms, setRooms]=useState([]);
   const [displayRoom, setDisplayRoom] = useState([])
+  const [id, setId] = useState("");
   const { userToken } = useContext(AuthContext)
   
-  useEffect(()=>{
+  /*useEffect(()=>{
       fetch('http://localhost:8000/api/rooms/?limit=100',{
         method:"GET",
         headers:{
@@ -34,7 +36,14 @@ const RoomIdInput = () => {
           setDisplayRoom(findRoom)
         }
       }
-    }
+    }*/
+  
+  const clickJoinBtn = async () => {
+    await axios.post('http://localhost:8000/api/rooms/{id}/join/', {
+      id
+    })
+    console.log('Join!');
+  }
   
   return (
     <>
@@ -47,7 +56,7 @@ const RoomIdInput = () => {
             <Form.Label>ルームID入力</Form.Label>
             <FormControl type='text' value={searchRoom} onChange={(e)=>{setSearchRoom(e.target.value)}}/>
           </Form.Group>
-          <Button onClick={roomSearch}>入力</Button>
+          <Button onClick={clickJoinBtn}>入力</Button>
         </Col>
       </Form>
         <div>{displayRoom && displayRoom.id}</div>
