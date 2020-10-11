@@ -1,12 +1,13 @@
 import React, { useState, useContext } from "react";
-import { Form, FormControl, Button, Container, Row, Col } from "react-bootstrap";
+import { Form, FormControl, Button, Container, Row, Col, Alert } from "react-bootstrap";
 import { AuthContext } from '../AuthService';
 import axios from "axios";
 import {useHistory} from 'react-router-dom'
 
 const CreateRooms = () => {
     const [icon_base64, setRoomImage] = useState("");
-    const [id, setId] = useState('')
+    const [id, setId] = useState("");
+    const [errMessage, setErrMessage] = useState("");
     const { userToken,setRoomsToken }  = useContext(AuthContext)
     const history = useHistory()
 
@@ -37,13 +38,11 @@ const CreateRooms = () => {
         reader.onload = (()=> setRoomImage(reader.result.replace(/^data:\w+\/\w+;base64,/, '')))
     }
     
-    console.log(icon_base64);
-    
     return (
         <Container>
             <Row>
                 <Form>
-                    {/*errMessage && <Alert variant="danger">{errMessage}</Alert>*/}
+                    {errMessage && <Alert variant="danger">{errMessage}</Alert>}
                     <p>
                         <b>ルーム作成</b>
                     </p>
