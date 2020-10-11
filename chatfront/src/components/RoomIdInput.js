@@ -9,7 +9,7 @@ const RoomIdInput = () => {
   const [rooms, setRooms]=useState([]);
   const [displayRoom, setDisplayRoom] = useState([])
   const [id, setId] = useState("");
-  const { userToken } = useContext(AuthContext)
+  const { userToken, setUserToken } = useContext(AuthContext)
   
   /*useEffect(()=>{
       fetch('http://localhost:8000/api/rooms/?limit=100',{
@@ -41,9 +41,11 @@ const RoomIdInput = () => {
   const clickJoinBtn = async () => {
     await axios.post('http://localhost:8000/api/rooms/{id}/join/', {
       id
+    }).then((response) => {
+      setUserToken(response.data.token)
+      console.log('Join!')
     })
-    console.log('Join!');
-  }
+  };
   
   return (
     <>
@@ -54,7 +56,13 @@ const RoomIdInput = () => {
         <Col xs={5}>
           <Form.Group controlId="name">
             <Form.Label>ルームID入力</Form.Label>
-            <FormControl type='text' value={searchRoom} onChange={(e)=>{setSearchRoom(e.target.value)}}/>
+            <FormControl 
+              type='text' 
+              onChange={(e) => {
+                setId(e.target.value);
+              }}
+              value={id}
+            />
           </Form.Group>
           <Button onClick={clickJoinBtn}>入力</Button>
         </Col>
