@@ -9,7 +9,7 @@ const RoomIdInput = () => {
   const [rooms, setRooms]=useState([]);
   const [displayRoom, setDisplayRoom] = useState([])
   const [id, setId] = useState("");
-  const { userToken, setUserToken } = useContext(AuthContext)
+  const { userToken, setUserToken, roomsToken, setRoomsToken } = useContext(AuthContext)
   
   /*useEffect(()=>{
       fetch('http://localhost:8000/api/rooms/?limit=100',{
@@ -38,14 +38,23 @@ const RoomIdInput = () => {
       }
     }*/
   
-  const clickJoinBtn = async () => {
-    await axios.post('http://localhost:8000/api/rooms/{id}/join/', {
-      id
-    }).then((response) => {
-      setUserToken(response.data.token)
-      console.log('Join!')
-    })
-  };
+    const clickJoinBtn = async () => {
+      if(!id){
+          alert('ルーム名を入力してください')
+      }else{
+          const headers = {
+              'Content-Type': 'application/json',
+              'Authorization': 'JWT' + ' ' + userToken
+          }
+          await axios.post(`http://localhost:8000/api/rooms/${id}/join/`, {
+              headers: headers
+          }).then((response) => {
+            setRoomsToken(response.data.token)
+          })
+          console.log(roomsToken);
+      }
+      console.log(roomsToken);
+    };
   
   return (
     <>
