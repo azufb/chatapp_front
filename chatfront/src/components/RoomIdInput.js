@@ -1,15 +1,17 @@
 import React,{ useState, useEffect, useContext } from 'react'
 import { AuthContext } from '../AuthService'
 import { Button, FormControl, Form, Col } from "react-bootstrap";
+import axios from 'axios';
 
 
 const RoomIdInput = () => {
   const [searchRoom,setSearchRoom] = useState("")
-  const [rooms, setRooms]=useState([])
+  const [rooms, setRooms]=useState([]);
   const [displayRoom, setDisplayRoom] = useState([])
-  const { userToken } = useContext(AuthContext)
+  const [id, setId] = useState("");
+  const { userToken, setUserToken, roomsToken, setRoomsToken } = useContext(AuthContext)
   
-  useEffect(()=>{
+  /*useEffect(()=>{
       fetch('http://localhost:8000/api/rooms/?limit=100',{
         method:"GET",
         headers:{
@@ -34,7 +36,36 @@ const RoomIdInput = () => {
           setDisplayRoom(findRoom)
         }
       }
-    }
+    }*/
+  
+    const clickJoinBtn = async () => {
+      if(!id){
+        return alert('ルーム名を入力してください')
+      }else{
+          // const headers = {
+          //     'Content-Type': 'application/json',
+          //     'Authorization': 'JWT' + ' ' + userToken
+          // }
+          // await axios.post(`http://localhost:8000/api/rooms/${id}/join/`, {
+          //     headers: headers
+          // })
+          axios({
+            method: 'post',
+            url: `http://localhost:8000/api/rooms/${id}/join/`,
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `JWT ${userToken}`
+            },
+          })
+          .then((response) => {
+            console.log(response);
+            setRoomsToken(response.data.token)
+            //responseにtokenないのでroomsTokenはset出来なさそうです
+          })
+          console.log(roomsToken);
+      }
+      console.log(roomsToken);
+    };
   
   return (
     <>
@@ -45,9 +76,15 @@ const RoomIdInput = () => {
         <Col xs={5}>
           <Form.Group controlId="name">
             <Form.Label>ルームID入力</Form.Label>
-            <FormControl type='text' value={searchRoom} onChange={(e)=>{setSearchRoom(e.target.value)}}/>
+            <FormControl 
+              type='text' 
+              onChange={(e) => {
+                setId(e.target.value);
+              }}
+              value={id}
+            />
           </Form.Group>
-          <Button onClick={roomSearch}>入力</Button>
+          <Button onClick={clickJoinBtn}>入力</Button>
         </Col>
       </Form>
         <div>{displayRoom && displayRoom.id}</div>

@@ -24,7 +24,7 @@ export const AuthProvider =({children})=>{
     <AuthContext.Provider
       value={{
         userToken,setUserToken,userName,setUserName,userIcon,setUserIcon,
-        currentRoomId, setCurrentRoomId
+        currentRoomId, setCurrentRoomId,roomsToken,setRoomsToken
       }}
     >
       {children}
