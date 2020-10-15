@@ -17,7 +17,7 @@ export default function Home() {
     return <Redirect to='/login'/>
   }
 
-
+  console.log(userToken);
   /*const logoutBtn =()=>{
     history.push('./login')
   }*/

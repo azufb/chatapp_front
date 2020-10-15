@@ -3,6 +3,7 @@ import { Button, FormControl, Form, Col } from "react-bootstrap";
 
 const ChatForm = ({addMessage,message,setMessage,setImage ,imageUp}) => {
 
+
   const onFormSubmit =(e)=>{
     e.preventDefault()
     addMessage()

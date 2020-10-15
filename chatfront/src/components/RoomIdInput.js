@@ -35,6 +35,10 @@ const RoomIdInput = () => {
         }
       }
     }
+
+    if(displayRoom){
+      console.log(displayRoom);
+    }
   
   return (
     <>

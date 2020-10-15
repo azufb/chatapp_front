@@ -23,7 +23,9 @@ const ChatApp = () => {
         })
         const messageData = await fetchData.json()
         setMessages(messageData.results)
-      }catch(e){}
+      }catch(e){
+        console.log(e);
+      }
     })()
   },[currentRoomId,message])
 
@@ -68,7 +70,9 @@ const ChatApp = () => {
         body:JSON.stringify(data)
       })
       fetchData.json()
-    }catch(e){}
+    }catch(e){
+      console.log(e);
+    }
   }
 
   const deleteMessage =(id)=>{
