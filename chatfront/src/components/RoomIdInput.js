@@ -40,16 +40,27 @@ const RoomIdInput = () => {
   
     const clickJoinBtn = async () => {
       if(!id){
-          alert('ルーム名を入力してください')
+        return alert('ルーム名を入力してください')
       }else{
-          const headers = {
+          // const headers = {
+          //     'Content-Type': 'application/json',
+          //     'Authorization': 'JWT' + ' ' + userToken
+          // }
+          // await axios.post(`http://localhost:8000/api/rooms/${id}/join/`, {
+          //     headers: headers
+          // })
+          axios({
+            method: 'post',
+            url: `http://localhost:8000/api/rooms/${id}/join/`,
+            headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'JWT' + ' ' + userToken
-          }
-          await axios.post(`http://localhost:8000/api/rooms/${id}/join/`, {
-              headers: headers
-          }).then((response) => {
+              'Authorization': `JWT ${userToken}`
+            },
+          })
+          .then((response) => {
+            console.log(response);
             setRoomsToken(response.data.token)
+            //responseにtokenないのでroomsTokenはset出来なさそうです
           })
           console.log(roomsToken);
       }
