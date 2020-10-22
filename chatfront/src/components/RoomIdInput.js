@@ -9,7 +9,7 @@ const RoomIdInput = () => {
   const [rooms, setRooms]=useState([]);
   const [displayRoom, setDisplayRoom] = useState([])
   const [id, setId] = useState("");
-  const { userToken, setUserToken, roomsToken, setRoomsToken } = useContext(AuthContext)
+  const { userToken, setUserToken, roomsToken, setRoomsToken,setCurrentRoomId } = useContext(AuthContext)
   
   /*useEffect(()=>{
       fetch('http://localhost:8000/api/rooms/?limit=100',{
@@ -61,10 +61,9 @@ const RoomIdInput = () => {
             console.log(response);
             setRoomsToken(response.data.token)
             //responseにtokenないのでroomsTokenはset出来なさそうです
+            setCurrentRoomId(id)
           })
-          console.log(roomsToken);
       }
-      console.log(roomsToken);
     };
   
   return (

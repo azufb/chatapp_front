@@ -26,6 +26,7 @@ const ChatApp = () => {
       }catch(e){}
     })()
   },[currentRoomId,message])
+  console.log(messages);
 
   /** 画像選択 */
   const imageUp =(e)=>{
