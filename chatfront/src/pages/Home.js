@@ -6,6 +6,7 @@ import CreateRooms from './CreateRooms';
 import RoomIdInput from "../components/RoomIdInput";
 import {AuthContext} from '../AuthService';
 import Chat from '../components/chat';
+import UsersSearch from '../components/UsersSearch'
 
 export default function Home() {
 
@@ -33,6 +34,7 @@ export default function Home() {
         <Profile/>
         <CreateRooms />
         <RoomIdInput/>
+        <UsersSearch/>
         <button onClick={()=>{history.push('./login')}}>ログアウト</button>
       </div>
       <div className="homeRight">

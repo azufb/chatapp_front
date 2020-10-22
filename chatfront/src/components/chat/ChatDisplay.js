@@ -2,7 +2,8 @@ import React from 'react'
 import ChatItem from './ChatItem'
 
 const ChatDisplay = ({messages,deleteMessage}) => (
-  messages.map((message)=>{
+  <>
+  {messages.map((message)=>{
     return(
       <ul key={message.id}>
         <ChatItem 
@@ -14,7 +15,8 @@ const ChatDisplay = ({messages,deleteMessage}) => (
         />
       </ul>
     )
-  })
+  })}
+  </>
 )
 
 export default ChatDisplay
