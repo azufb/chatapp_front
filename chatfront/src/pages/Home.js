@@ -1,11 +1,12 @@
 import React,{useContext} from 'react';
-import { Container } from 'react-bootstrap';
+import { Container,Button } from 'react-bootstrap';
 import Profile from "../components/Profile";
 import { useHistory, Link, Redirect } from "react-router-dom";
 import CreateRooms from './CreateRooms';
 import RoomIdInput from "../components/RoomIdInput";
 import {AuthContext} from '../AuthService';
 import Chat from '../components/chat';
+import RoomList from '../components/RoomList'
 
 export default function Home() {
 
@@ -33,7 +34,8 @@ export default function Home() {
         <Profile/>
         <CreateRooms />
         <RoomIdInput/>
-        <button onClick={()=>{history.push('./login')}}>ログアウト</button>
+        <RoomList/>
+        <Button onClick={()=>{history.push('./login')}}>ログアウト</Button>
       </div>
       <div className="homeRight">
         <Chat/>
