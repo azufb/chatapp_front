@@ -16,6 +16,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-upload-gallery": "^0.1.2",
+    "socket.io-client": "^2.3.1",
     "wscat": "^4.0.1"
   },
   "scripts": {

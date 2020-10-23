@@ -61,10 +61,9 @@ const RoomIdInput = () => {
             console.log(response);
             setRoomsToken(response.data.token)
             //responseにtokenないのでroomsTokenはset出来なさそうです
+            setCurrentRoomId(id)
           })
-          console.log(roomsToken);
       }
-      console.log(roomsToken);
     };
   
   return (
