@@ -3,29 +3,26 @@ import {AuthContext} from '../../AuthService'
 import { Button, FormControl, Form, Col } from "react-bootstrap";
 
 
-const ChatForm = ({addMessage,message,setMessage,setImage ,imageUp}) => {
+const ChatForm = ({message,setMessage,setImage ,imageUp,setMessages,messages}) => {
 
   const {currentRoomId,userToken} = useContext(AuthContext)
 
+  const sock = new WebSocket(`ws://localhost:8000/ws/room/${currentRoomId}/`,[userToken]);
   const onFormSubmit =(e)=>{
     e.preventDefault()
-    addMessage()
     setMessage('')
     setImage('')
+    sock.send(message)
   }
   
-  useEffect(()=>{
-    const sock = new WebSocket(`ws://localhost:8000/ws/room/${currentRoomId}/`,[userToken]);
-    sock.onopen = () => {
-      console.log('ws opened');
-      sock.send(message)
-    };
+  sock.onopen = () => {
+    console.log('ws opened');
+  };
 
-     return () => {
-      console.log('ws closed');
-      sock.close();
-    }
-  },[message])
+  sock.onmessage=(e)=>{
+    const response = JSON.parse(e.data)
+    setMessages([...messages,response])
+  }
 
 
   return (
