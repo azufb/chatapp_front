@@ -1,4 +1,4 @@
-import React,{useEffect,useContext} from 'react'
+import React,{useEffect,useContext,useState} from 'react'
 import {AuthContext} from '../../AuthService'
 import { Button, FormControl, Form, Col } from "react-bootstrap";
 
@@ -7,7 +7,8 @@ const ChatForm = ({message,setMessage,setImage ,imageUp,setMessages,messages}) =
 
   const {currentRoomId,userToken} = useContext(AuthContext)
 
-  const sock = new WebSocket(`ws://localhost:8000/ws/room/${currentRoomId}/`,[userToken]);
+ var sock = undefined
+  // const sock = new WebSocket(`ws://localhost:8000/ws/room/${currentRoomId}/`,[userToken]);
   const onFormSubmit =(e)=>{
     e.preventDefault()
     setMessage('')
@@ -15,14 +16,28 @@ const ChatForm = ({message,setMessage,setImage ,imageUp,setMessages,messages}) =
     sock.send(message)
   }
   
-  sock.onopen = () => {
-    console.log('ws opened');
-  };
+  // sock.onopen = () => {
+  //   console.log('ws opened');
+  // };
 
-  sock.onmessage=(e)=>{
-    const response = JSON.parse(e.data)
-    setMessages([...messages,response])
-  }
+  // sock.onmessage=(e)=>{
+  //   const response = JSON.parse(e.data)
+  //   setMessages([...messages,response])
+  // }
+function name (){
+  const url = `ws://localhost:8000/ws/room/${currentRoomId}/`
+   sock = new WebSocket(url,[userToken]);
+    console.log(url);
+    sock.onopen = () => {
+      // sock.send(message)
+      console.log("open");
+    };
+    sock.onmessage = ((e) => {
+      const response = JSON.parse(e.data)
+      setMessages([...messages,response])
+    })
+}
+ useEffect(name, [currentRoomId,sock])
 
 
   return (

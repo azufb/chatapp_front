@@ -55,7 +55,7 @@ const ChatApp = () => {
   }
 
   const deleteMessage =(id)=>{
-    setMessages(messages.filter((message)=>String(message.id) !== id))
+    setMessages(messages.filter((message)=>message.id.toString() !== id))
   }
 
   return (
