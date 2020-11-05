@@ -13,7 +13,7 @@ const ChatForm = ({message,setMessage,setImage ,imageUp,setMessages,messages}) =
     e.preventDefault()
     setMessage('')
     setImage('')
-    //sock.send(message)
+    sock.send(message)
   }
   
   // sock.onopen = () => {
@@ -24,7 +24,7 @@ const ChatForm = ({message,setMessage,setImage ,imageUp,setMessages,messages}) =
   //   const response = JSON.parse(e.data)
   //   setMessages([...messages,response])
   // }
-/*function name (){
+function name (){
   const url = `ws://localhost:8000/ws/room/${currentRoomId}/`
    sock = new WebSocket(url,[userToken]);
     console.log(url);
@@ -37,23 +37,7 @@ const ChatForm = ({message,setMessage,setImage ,imageUp,setMessages,messages}) =
       setMessages([...messages,response])
     })
 }
- useEffect(name, [currentRoomId,sock])*/
-
-useEffect(() => {
-  // 以下、constからletに変更
-  let sock = new WebSocket(`ws://localhost:8000/ws/room/${currentRoomId}/`,[userToken]);
-  const url = `ws://localhost:8000/ws/room/${currentRoomId}/`
-   sock = new WebSocket(url,[userToken]);
-    console.log(url);
-    sock.onopen = () => {
-      sock.send(message)
-      console.log("open");
-    };
-    sock.onmessage = ((e) => {
-      const response = JSON.parse(e.data)
-      setMessages([...messages,response])
-    })
-})
+ useEffect(name, [currentRoomId,sock])
 
 
   return (
