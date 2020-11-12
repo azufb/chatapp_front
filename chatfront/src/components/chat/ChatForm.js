@@ -1,31 +1,38 @@
-import React,{useEffect,useContext} from 'react'
+import React,{useEffect,useContext,useState} from 'react'
 import {AuthContext} from '../../AuthService'
 import { Button, FormControl, Form, Col } from "react-bootstrap";
 
 
-const ChatForm = ({addMessage,message,setMessage,setImage ,imageUp}) => {
+const ChatForm = ({message,setMessage,setImage ,imageUp,setMessages,messages}) => {
 
   const {currentRoomId,userToken} = useContext(AuthContext)
+  const [sock,setSock] = useState()
+
+  useEffect(()=>{
+    if(currentRoomId&&userToken){
+      const ws = new WebSocket(`ws://localhost:8000/ws/room/${currentRoomId}/`,[userToken]);
+      //話していた履歴を取得するにはルーム入った瞬間にgetリクエストをする
+      //on~はイベント
+      ws.onmessage = ((message) => {
+        const response = JSON.parse(message.data)
+        setMessages([...messages,response])
+      })
+     ws.onopen = () => {
+        console.log("open");
+      };
+      setSock(ws)
+    }
+  },[currentRoomId,userToken,messages])
 
   const onFormSubmit =(e)=>{
     e.preventDefault()
-    addMessage()
     setMessage('')
     setImage('')
-  }
-  
-  useEffect(()=>{
-    const sock = new WebSocket(`ws://localhost:8000/ws/room/${currentRoomId}/`,[userToken]);
-    sock.onopen = () => {
-      console.log('ws opened');
+    if(sock) {
       sock.send(message)
-    };
-
-     return () => {
-      console.log('ws closed');
-      sock.close();
     }
-  },[message])
+  }
+
 
 
   return (

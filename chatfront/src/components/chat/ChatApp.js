@@ -10,24 +10,6 @@ const ChatApp = () => {
   const [image,setImage] = useState("")
   const {userToken,currentRoomId} = useContext(AuthContext)
 
-  // message取得
-  useEffect(()=>{
-    (async()=>{
-      try{
-        const fetchData = await fetch(`http://localhost:8000/api/rooms/${currentRoomId}/messages/?from_id=0`,{
-          method:'GET',
-          headers:{
-            'Content-Type': 'application/json',
-            'authorization':'JWT' + ' ' + userToken
-          }
-        })
-        const messageData = await fetchData.json()
-        setMessages(messageData.results)
-      }catch(e){}
-    })()
-  },[currentRoomId,message])
-  console.log(messages);
-
   /** 画像選択 */
   const imageUp =(e)=>{
     const file = e.target.files[0];
@@ -73,7 +55,7 @@ const ChatApp = () => {
   }
 
   const deleteMessage =(id)=>{
-    setMessages(messages.filter((message)=>String(message.id) !== id))
+    setMessages(messages.filter((message)=>message.id.toString() !== id))
   }
 
   return (
@@ -86,6 +68,7 @@ const ChatApp = () => {
         image={image}
         setImage={setImage}
         imageUp={imageUp}
+        messages={messages}
       />
       <ChatDisplay messages={messages} deleteMessage={deleteMessage}/>
     </>
