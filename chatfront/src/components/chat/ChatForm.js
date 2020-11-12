@@ -11,9 +11,18 @@ const ChatForm = ({message,setMessage,setImage ,imageUp,setMessages,messages}) =
   useEffect(()=>{
     if(currentRoomId&&userToken){
       const ws = new WebSocket(`ws://localhost:8000/ws/room/${currentRoomId}/`,[userToken]);
+      //話していた履歴を取得するにはルーム入った瞬間にgetリクエストをする
+      //on~はイベント
+      ws.onmessage = ((message) => {
+        const response = JSON.parse(message.data)
+        setMessages([...messages,response])
+      })
+     ws.onopen = () => {
+        console.log("open");
+      };
       setSock(ws)
     }
-  },[currentRoomId,userToken])
+  },[currentRoomId,userToken,messages])
 
   const onFormSubmit =(e)=>{
     e.preventDefault()
@@ -21,21 +30,9 @@ const ChatForm = ({message,setMessage,setImage ,imageUp,setMessages,messages}) =
     setImage('')
     if(sock) {
       sock.send(message)
-      sock.onmessage = ((message) => {
-        const response = JSON.parse(message.data)
-        setMessages([...messages,response])
-      })
     }
   }
 
-  useEffect(()=>{
-   if(sock){
-     sock.onopen = () => {
-        console.log("open");
-      };
-      
-   }
- }, [sock])
 
 
   return (
